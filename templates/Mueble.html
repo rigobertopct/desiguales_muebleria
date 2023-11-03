@@ -1,0 +1,98 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block CSS %}
+
+{% endblock %}
+{% block contenido %}
+    <!-- Section-->
+    <section class="py-5" style="font-size: 20px">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row mb-3">
+                <div class="col-lg-8 col-sm-12 col-md-8 border-degradado">
+                    <img class="img-fluid" style="height: 80%; width: 100%"
+                         src="{{ mueble.imagen.url }}" alt="mueble">
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <p class="text-bold">Precio: $ {{ mueble.precio }} USD</p>
+                    <p class="text-bold">{{ mueble.nombre }}</p>
+                    <button class="btn btn-dark" style="font-size: 20px;">Gestionar compra</button>
+                </div>
+            </div>
+            <div class="row">
+                <p class="text-bold">OFERTA:</p>
+                <p style="font-size: 18px">
+                    Si el acceso al domicilio es pequeño, podemos ensamblar el mueble dentro de su casa. Lo que supone
+                    un porciento adicional al costo del artículo.
+                </p>
+                <p class="text-bold">CONTRATO:</p>
+                <p style="font-size: 18px">
+                    -El mueble es llevado hasta su casa, no accedemos a su interior. Usted es responsable de eso.
+                </p>
+                <p style="font-size: 18px">
+                    -Damos garantía solo por la manufactura de nuestros muebles. La madera utilizada la avalamos por un
+                    año (La tela, vinil y esponja no podemos estimar su durabilidad).
+                </p>
+                <p style="font-size: 18px">
+                    -Los muebles que restauramos (No fabricados por nosotros) no llevan garantía.
+                </p>
+                <p style="font-size: 18px">
+                    -Le ofrecemos 24 horas para realizar la devolución de su artículo en caso de inconformidad. en este
+                    caso los gastos de transportación si deben ser pagados por el cliente.
+                </p>
+                <p style="font-size: 18px">
+                    -El cliente tiene 72 horas para cancelar su contrato, en caso de que no vaya el trabajo pierde la
+                    garantía.
+                </p>
+                <p style="font-size: 18px">
+                    -Si el artículo no corresponde con lo pactado debe de contactar de inmediato por cualquier vía que
+                    le sea más fácil, será usted siempre bien atendido.
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block JavaScript %}
+    <script>
+        window.onload = function () {
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            modal.style.display = "block";
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            margin: 24,
+            loop: true,
+            center: true,
+            autoplay: true,
+            smartSpeed: 300,
+            slideSpeed: 100,
+            responsive: {
+                0: {
+                    items: 2
+                },
+
+                550: {
+                    items: 3
+                },
+                700: {
+                    items: 4
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        })
+    </script>
+    </script>
+{% endblock %}

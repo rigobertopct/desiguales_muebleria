@@ -1,0 +1,95 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block CSS %}
+
+{% endblock %}
+{% block contenido %}
+    {% if show_modal %}
+    <div id="myModal" class="modal">
+        <img class="modal-content" src="{% static 'assets/promos/navidad.jpg' %}" alt="Imagen">
+        <span class="d-flex justify-content-center text-white mt-3">Feliz Navidad</span>
+        <div class="w-100 d-flex justify-content-center mt-3">
+            <span class="close btn btn-secondary">Cerrar</span>
+        </div>
+    </div>
+    {% endif %}
+    {% include 'Promos.html' %}
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+                {% for item in categorias %}
+                    <div class="col mb-5">
+                        <div class="card h-100 shadow-lg border-2" style="border-color: #202328">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{ item.imagen.url }}" alt="{{ item.nombre }}"/>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ item.nombre }}</h5>
+                                    <!-- Product price-->
+                                    ${{ item.precio_minimo }} - $8{{ item.precio_maximo }}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="d-flex justify-content-center">
+                                    <a href="{% url 'Muebles:muebles' item.id %}">
+                                    <div class="boton-imagen">
+                                    </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block JavaScript %}
+    <script>
+        window.onload = function () {
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            modal.style.display = "block";
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            margin: 24,
+            loop: true,
+            center: true,
+            autoplay: true,
+            smartSpeed: 300,
+            slideSpeed: 100,
+            responsive: {
+                0: {
+                    items: 2
+                },
+
+                550: {
+                    items: 3
+                },
+                700: {
+                    items: 4
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        })
+    </script>
+    </script>
+{% endblock %}

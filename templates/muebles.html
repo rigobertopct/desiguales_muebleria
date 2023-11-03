@@ -1,0 +1,86 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block CSS %}
+
+{% endblock %}
+{% block contenido %}
+    {% include 'Promos.html' %}
+    <!-- Section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
+                {% for item in muebles %}
+                    <div class="col mb-5">
+                        <div class="card h-100 shadow-lg border-2">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="{{ item.imagen.url }}" alt="{{ item.nombre }}"/>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ item.nombre }}</h5>
+                                    <!-- Product price-->
+                                    ${{ item.precio }}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="d-flex justify-content-center">
+                                    <a href="{% url 'Muebles:mueble' item.id %}">
+                                    <div class="boton-imagen">
+                                    </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block JavaScript %}
+    <script>
+        window.onload = function () {
+            var modal = document.getElementById("myModal");
+            var span = document.getElementsByClassName("close")[0];
+            modal.style.display = "block";
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+            window.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            margin: 24,
+            loop: true,
+            center: true,
+            autoplay: true,
+            smartSpeed: 300,
+            slideSpeed: 100,
+            responsive: {
+                0: {
+                    items: 2
+                },
+
+                550: {
+                    items: 3
+                },
+                700: {
+                    items: 4
+                },
+                1000: {
+                    items: 6
+                }
+            }
+        })
+    </script>
+    </script>
+{% endblock %}
