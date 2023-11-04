@@ -4,6 +4,12 @@
 {% block title %}
     {{ title }}
 {% endblock %}
+{% block Meta %}
+    <meta property="og:title" content="{{ mueble.nombre }}"/>
+    <meta property="og:description" content="Categoria: {{ mueble.categoria.nombre }}"/>
+    <meta property="og:url" content="https://losdesiguales.expresscuba.com/mueble/{{ mueble.id }}/"/>
+    <meta property="og:image" content="https://losdesiguales.expresscuba.com{{ mueble.imagen.url }}"/>
+{% endblock %}
 {% block CSS %}
 
 {% endblock %}
@@ -34,7 +40,8 @@
                         <p class="text-bold">Precio: $ {{ mueble.precio }} USD</p>
                     {% endif %}
                     <p class="text-bold">{{ mueble.nombre }}</p>
-                    <button class="btn btn-dark" style="font-size: 20px;">Gestionar compra</button>
+                    <a href="https://wa.me/5356469263?text=Buen%20dia%2C%20tiene%20disponible%20el%20mueble%20{{ mueble.nombre }}%20de%20la%20categor%C3%ADa%20{{ mueble.categoria.nombre }}"
+                       class="btn btn-dark" style="font-size: 20px;">Gestionar compra</a>
                     </div>
             </div>
             <div class="row">
