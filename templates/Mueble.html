@@ -1,5 +1,6 @@
 {% extends 'Base.html' %}
 {% load static %}
+{% load tags %}
 {% block title %}
     {{ title }}
 {% endblock %}
@@ -12,14 +13,29 @@
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row mb-3">
                 <div class="col-lg-8 col-sm-12 col-md-8 border-degradado">
+                    {% if mueble.id|comprobar_promo %}
+                        {% for promo in promociones %}
+                            {% if mueble.id == promo.mueble.id %}
+                                <img class="img-fluid" style="height: 80%; width: 100%"
+                                     src="{{ mueble.imagen.url }}" alt="mueble">
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12">
+                                <p><span
+                                        class="text-decoration-line-through text-danger">$ {{ mueble.precio }} USD</span>
+                                    -
+                                    $ {{ promo.calcular_precio }} USD</p>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
                     <img class="img-fluid" style="height: 80%; width: 100%"
                          src="{{ mueble.imagen.url }}" alt="mueble">
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                    <p class="text-bold">Precio: $ {{ mueble.precio }} USD</p>
+                    </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                        <p class="text-bold">Precio: $ {{ mueble.precio }} USD</p>
+                    {% endif %}
                     <p class="text-bold">{{ mueble.nombre }}</p>
                     <button class="btn btn-dark" style="font-size: 20px;">Gestionar compra</button>
-                </div>
+                    </div>
             </div>
             <div class="row">
                 <p class="text-bold">OFERTA:</p>

@@ -12470,3 +12470,17 @@ textarea.form-control-lg {
 .boton-imagen:hover {
   filter: brightness(80%);
 }
+.boton-imagen1 {
+  background-image: url('../assets/botones/Boton_Ver detalles.svg');
+  background-size: cover;
+  background-position: center;
+  width: 117px;
+  height: 32px;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.3s ease-in-out;
+}
+
+.boton-imagen1:hover {
+  filter: brightness(80%);
+}

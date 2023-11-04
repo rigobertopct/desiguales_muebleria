@@ -1,5 +1,6 @@
 {% extends 'Base.html' %}
 {% load static %}
+{% load tags %}
 {% block title %}
     {{ title }}
 {% endblock %}
@@ -13,31 +14,63 @@
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
                 {% for item in muebles %}
-                    <div class="col mb-5">
-                        <div class="card h-100 shadow-lg border-2">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{ item.imagen.url }}" alt="{{ item.nombre }}"/>
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ item.nombre }}</h5>
-                                    <!-- Product price-->
-                                    ${{ item.precio }}
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="d-flex justify-content-center">
-                                    <a href="{% url 'Muebles:mueble' item.id %}">
-                                    <div class="boton-imagen">
+                        {% if item.id|comprobar_promo %}
+                            {% for promo in promociones %}
+                                {% if item.id == promo.mueble.id %}
+                                    <div class="col-lg-3 col-md-2 col-sm-12 mb-3">
+                                        <div class="card h-100 shadow-lg border-2">
+                                            <img class="card-img-top" src="{{ item.imagen.url }}"
+                                                 alt="{{ item.nombre }}"/>
+                                            <div class="overlay text-white text-center">
+                                                <p class="discount-badge">-{{ promo.descuento }}%</p>
+                                            </div>
+                                            <div class="card-body p-4">
+                                                <div class="text-center">
+                                                    <!-- Product name-->
+                                                    <h5 class="fw-bolder">{{ item.nombre }}</h5>
+                                                    <p><span
+                                                            class="text-decoration-line-through text-danger">$ {{ item.precio }}</span>
+                                                        -
+                                                        ${{ promo.calcular_precio }}</p>
+                                                </div>
+                                            </div>
+                                            <!-- Product actions-->
+                                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="{% url 'Muebles:mueble' item.id %}">
+                                                        <div class="boton-imagen1">
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="col-lg-3 col-md-2 col-sm-12 mb-3">
+                                <div class="card h-100 shadow-lg border-2">
+                                    <img class="card-img-top" src="{{ item.imagen.url }}" alt="{{ item.nombre }}"/>
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <!-- Product name-->
+                                            <h5 class="fw-bolder">{{ item.nombre }}</h5>
+                                            <p>$ {{ item.precio }}</p>
+                                        </div>
+                                    </div>
+                                    <!-- Product actions-->
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="d-flex justify-content-center">
+                                            <a href="{% url 'Muebles:mueble' item.id %}">
+                                                <div class="boton-imagen1">
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
             </div>
         </div>
     </section>
@@ -81,6 +114,5 @@
                 }
             }
         })
-    </script>
     </script>
 {% endblock %}

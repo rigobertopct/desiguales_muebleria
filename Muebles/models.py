@@ -34,6 +34,10 @@ class Muebles_Oferta(models.Model):
     mueble = models.ForeignKey(Mueble, on_delete=CASCADE)
     descuento = models.DecimalField(decimal_places=2, max_digits=6)
 
+    def calcular_precio(self):
+        resultado=self.mueble.precio * self.descuento / 100
+        return round(resultado, 2)
+
     class Meta:
         verbose_name = 'Mueble en Oferta'
         verbose_name_plural = 'Muebles en Oferta'
