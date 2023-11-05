@@ -36,7 +36,7 @@ class Muebles_Oferta(models.Model):
 
     def calcular_precio(self):
         resultado=self.mueble.precio * self.descuento / 100
-        return round(resultado, 2)
+        return self.mueble.precio-round(resultado, 2)
 
     class Meta:
         verbose_name = 'Mueble en Oferta'
