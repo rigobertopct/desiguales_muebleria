@@ -14,9 +14,19 @@ def inicio(request):
         visited = False
     else:
         visited = True
+
+    categorias = Categoria.objects.all()
+    for categoria in categorias:
+        muebles = Mueble.objects.filter(categoria=categoria)
+        if muebles.exists():
+            precio_minimo = muebles.order_by('precio').first().precio
+            precio_maximo = muebles.order_by('-precio').first().precio
+            categoria.precio_minimo = precio_minimo
+            categoria.precio_maximo = precio_maximo
+            categoria.save()
     data = {
         'title': 'Inicio',
-        'categorias': Categoria.objects.all(),
+        'categorias': Categoria.objects.all().order_by('-id'),
         'promociones': Muebles_Oferta.objects.all(),
         'show_modal': visited
     }
