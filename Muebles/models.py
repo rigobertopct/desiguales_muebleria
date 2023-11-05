@@ -7,8 +7,8 @@ from django.db.models import CASCADE
 
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100)
-    precio_minimo = models.DecimalField(decimal_places=2, max_digits=10)
-    precio_maximo = models.DecimalField(decimal_places=2, max_digits=10)
+    precio_minimo = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
+    precio_maximo = models.DecimalField(decimal_places=2, max_digits=10, blank=True, null=True)
     imagen = models.ImageField(upload_to='categorias', blank=True, null=True)
 
     def __str__(self):
@@ -45,7 +45,7 @@ class Muebles_Oferta(models.Model):
 
 class Promocion(models.Model):
     imagen = models.ImageField(upload_to='promocion')
-    texto = models.TextField()
+    texto = models.TextField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'Promocion'

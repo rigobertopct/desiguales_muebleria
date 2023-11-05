@@ -6,7 +6,7 @@ from Muebles.models import *
 
 @admin.register(Mueble)
 class MuebleAdmin(admin.ModelAdmin):
-    list_display = ['nombre', 'precio', 'categoria']
+    list_display = ['nombre', 'precio', 'categoria', 'imagen']
 
 
 @admin.register(Categoria)
