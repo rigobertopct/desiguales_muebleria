@@ -61,7 +61,7 @@ def filtro_view(request):
         'muebles': Mueble.objects.all(),
         'promociones': Muebles_Oferta.objects.all(),
         'title': 'Filtro de muebles',
-        'categorias': Categoria.objects.all()
+        'categorias': Categoria.objects.all().order_by('-id')
     }
     return render(request, 'filtro.html', data)
 
