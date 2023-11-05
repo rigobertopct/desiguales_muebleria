@@ -15,7 +15,7 @@
 {% endblock %}
 {% block contenido %}
     <!-- Section-->
-    <section class="py-5" style="font-size: 20px">
+    <section class="py-5" style="font-size: 20px; font-family: 'Acumi',serif">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row mb-3">
                 <div class="col-lg-8 col-sm-12 col-md-8 border-degradado">
@@ -26,10 +26,10 @@
                                      src="{{ mueble.imagen.url }}" alt="mueble">
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12">
-                                <p><span
-                                        class="text-decoration-line-through text-danger">$ {{ mueble.precio }} USD</span>
+                                <p>Precio: <span
+                                        class="text-decoration-line-through text-danger" style="font-weight: bold;">$ {{ mueble.precio }} USD</span>
                                     -
-                                    $ {{ promo.calcular_precio }} USD</p>
+                                    <span style="font-weight: bold;">$ {{ promo.calcular_precio }} USD</span></p>
                             {% endif %}
                         {% endfor %}
                     {% else %}
@@ -37,20 +37,19 @@
                          src="{{ mueble.imagen.url }}" alt="mueble">
                     </div>
                         <div class="col-lg-4 col-md-4 col-sm-12">
-                        <p class="text-bold">Precio: $ {{ mueble.precio }} USD</p>
+                        <p>Precio: <span style="font-weight: bold;">$ {{ mueble.precio }} USD</span></p>
                     {% endif %}
-                    <p class="text-bold">{{ mueble.nombre }}</p>
-                    <a href="https://wa.me/5356469263?text=Buen%20dia%2C%20tiene%20disponible%20el%20mueble%20{{ mueble.nombre }}%20de%20la%20categor%C3%ADa%20{{ mueble.categoria.nombre }}"
-                       class="btn btn-dark" style="font-size: 20px;">Gestionar compra</a>
+                    <p style="font-weight: bold;">{{ mueble.nombre }}</p>
+                    <button id="gestionar" class="btn btn-dark" style="font-size: 20px;">GESTIONAR COMPRA</button>
                     </div>
             </div>
             <div class="row">
-                <p class="text-bold">OFERTA:</p>
+                <p style="font-weight: bold;">OFERTA:</p>
                 <p style="font-size: 18px">
                     Si el acceso al domicilio es pequeño, podemos ensamblar el mueble dentro de su casa. Lo que supone
                     un porciento adicional al costo del artículo.
                 </p>
-                <p class="text-bold">CONTRATO:</p>
+                <p style="font-weight: bold;">CONTRATO:</p>
                 <p style="font-size: 18px">
                     -El mueble es llevado hasta su casa, no accedemos a su interior. Usted es responsable de eso.
                 </p>
@@ -76,20 +75,61 @@
             </div>
         </div>
     </section>
+    <div id="modal_gestionar" class="modal d-none">
+        <div class="modal-content p-5 w-25" style="background-color: rgba(221,221,221)">
+            <h3 class="text-center mb-3">Seleccione el metodo de gestión</h3>
+            <button id="wasa" class="btn btn-dark w-100 mb-3">
+                <img class="me-2" src="{% static 'assets/whatsapp.png' %}" style="height: 25px; width: 25px" alt="whatsapp">
+                WhatsApp
+            </button>
+            <button id="email" class="btn btn-dark w-100">
+                <img class="me-2" src="{% static 'assets/correo.png' %}" style="height: 25px; width: 25px" alt="whatsapp">
+                Correo
+            </button>
+
+        </div>
+        <div class="w-100 d-flex justify-content-center mt-3">
+            <span id="close_gestionar" class="btn btn-secondary">Cerrar</span>
+        </div>
+    </div>
+    <div id="modal_wasa" class="modal d-none">
+        <div class="modal-content p-5 w-25" style="background-color: rgba(221,221,221)">
+            <h3 class="text-center mb-3">Envíe un mensaje sobre el mueble y espere ser atendido</h3>
+            <label for="mensaje">Mensaje</label><textarea class="form-text mb-3" id="mensaje">
+
+            </textarea>
+            <button id="wasa" class="btn btn-dark w-100 mb-3">
+                <img class="me-2" src="{% static 'assets/whatsapp.png' %}" style="height: 25px; width: 25px" alt="whatsapp">
+                WhatsApp
+            </button>
+        </div>
+        <div class="w-100 d-flex justify-content-center mt-3">
+            <span id="close_gestionar" class="btn btn-secondary">Cerrar</span>
+        </div>
+    </div>
 {% endblock %}
 {% block JavaScript %}
     <script>
         window.onload = function () {
-            var modal = document.getElementById("myModal");
-            var span = document.getElementsByClassName("close")[0];
-            modal.style.display = "block";
+            var modal = document.getElementById("modal_gestionar");
+            var modal_wasa = document.getElementById("modal_wasa");
+            var span = document.getElementById("close_gestionar");
+            var gestionar = document.getElementById('gestionar');
             span.onclick = function () {
-                modal.style.display = "none";
+                modal.classList.add('d-none');
+            }
+            gestionar.onclick = function () {
+                modal.classList.remove('d-none')
             }
             window.onclick = function (event) {
                 if (event.target === modal) {
                     modal.style.display = "none";
                 }
+            }
+            const wasa=document.getElementById('wasa')
+            wasa.onclick=function (){
+                modal.classList.add('d-none');
+                modal_wasa.classList.remove('d-none');
             }
         }
         var owl = $('.owl-carousel');

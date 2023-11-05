@@ -4,7 +4,6 @@
     {{ title }}
 {% endblock %}
 {% block CSS %}
-
 {% endblock %}
 {% block contenido %}
     {% if show_modal %}
@@ -30,9 +29,9 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ item.nombre }}</h5>
+                                    <h5 class="fw-bolder" style="font-family: 'Reem Kufi', sans-serif !important;">{{ item.nombre }}</h5>
                                     <!-- Product price-->
-                                    $ {{ item.precio_minimo }} - $ {{ item.precio_maximo }}
+                                    <p style="color: gray; font-family: 'Segoe UI',serif">$ {{ item.precio_minimo }} - $ {{ item.precio_maximo }}</p>
                                 </div>
                             </div>
                             <!-- Product actions-->
@@ -90,6 +89,5 @@
                 }
             }
         })
-    </script>
     </script>
 {% endblock %}

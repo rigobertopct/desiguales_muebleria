@@ -1,13 +1,20 @@
+<style>
+    .link_promo:hover{
+        filter: brightness(80%);
+    }
+</style>
 <h3 class="mt-3 text-center">Ofertas y rebajas</h3>
-    <div class="owl-carousel owl-theme mt-3">
+<div class="owl-carousel owl-theme mt-3">
     {% for item in promociones %}
-     <div class="item">
-            <div class="slider">
-                <img src="{{ item.mueble.imagen.url }}" class="slider" style="width: 215px; height: 130px">
-                <div class="overlay text-white text-center">
-                    <p class="discount-badge">-{{ item.descuento }}%</p>
+        <a href="{% url 'Muebles:mueble' item.mueble.id %}" class="link_promo">
+            <div class="item">
+                <div class="slider">
+                    <img src="{{ item.mueble.imagen.url }}" class="slider" style="width: 215px; height: 130px">
+                    <div class="overlay text-white text-center">
+                        <p class="discount-badge">-{{ item.descuento }}%</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </a>
     {% endfor %}
     </div>

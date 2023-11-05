@@ -24,6 +24,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@1,700&family=Reem+Kufi&display=swap"
+          rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Acumi';
+            src: url('{% static "css/AcuminVariableConcept.otf" %}') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
     {% block CSS %}
 
     {% endblock %}
@@ -32,7 +44,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light mb-4">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#!">Desiguales mueblería</a>
+        <a class="navbar-brand" style="color: gray;" href="{% url 'Muebles:inicio' %}">Precios económicos y la mejor calidad!</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
                 class="navbar-toggler-icon"></span></button>
@@ -40,7 +52,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'Muebles:inicio' %}">Inicio</a>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'Muebles:filtro' %}">Filtro de muebles</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{% url 'Muebles:filtro' %}">Filtro de muebles</a></li>
             </ul>
 {#            <form class="d-flex">#}
 {#                <button class="btn btn-outline-dark me-2" type="submit" style="200px">#}
@@ -62,7 +74,7 @@
 
 {% endblock %}
 <!-- Footer-->
-<footer>
+<footer style="font-family: 'Reem Kufi', sans-serif !important;">
     <img src="{% static 'assets/linea.png' %}" style="height: 50px; width: 100%">
     <div style="background: linear-gradient(to bottom, rgb(221,221,221), #686868); width: 100vw">
         <div class="row text-dark" >
@@ -94,7 +106,7 @@
         </div>
 
     </div>
-</footer>
+</footerc>
 <!-- Bootstrap core JS-->
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 <!-- Core theme JS-->
