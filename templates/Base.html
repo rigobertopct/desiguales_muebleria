@@ -30,7 +30,7 @@
 </head>
 <body>
 <!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+<nav class="navbar navbar-expand-lg navbar-light mb-4">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="#!">Desiguales mueblería</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -62,9 +62,10 @@
 
 {% endblock %}
 <!-- Footer-->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <div class="row text-white">
+<footer>
+    <img src="{% static 'assets/linea.png' %}" style="height: 50px; width: 100%">
+    <div style="background: linear-gradient(to bottom, rgb(221,221,221), #686868); width: 100vw">
+        <div class="row text-dark" >
             <div class="col-md-4 col-lg-4 col-sm-12 text-center mb-3">
                 <h3>Contacto</h3>
                 <p>Teléfonos:</p>
@@ -87,8 +88,11 @@
                 </div>
             </div>
         </div>
-        <p class="m-0 text-center text-white">Copyright &copy; Desiguales mueblería <span
+        <div>
+            <p class="m-0 text-center text-dark">Copyright &copy; Desiguales mueblería <span
                 id="anno"></span></p>
+        </div>
+
     </div>
 </footer>
 <!-- Bootstrap core JS-->

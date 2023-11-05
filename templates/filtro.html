@@ -50,9 +50,9 @@
                         </button>
                     </div>
                 </div>
-                <div class="row" id="muebles">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4" id="muebles">
                     {% for item in muebles %}
-                            <div class="col-lg-3 col-md-2 col-sm-12 mb-3">
+                            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                                 <div class="card h-100 shadow-lg border-2">
                                     <img class="card-img-top" src="{{ item.imagen.url }}" alt="{{ item.nombre }}"/>
                                     <div class="card-body p-4">
@@ -138,7 +138,7 @@
                     data.forEach(item => {
                         const divprop = document.createElement('div')
                         divprop.classList.add('col-lg-3')
-                        divprop.classList.add('col-md-2')
+                        divprop.classList.add('col-md-6')
                         divprop.classList.add('col-sm-12')
                         divprop.classList.add('mb-3')
                         divprop.innerHTML = `
