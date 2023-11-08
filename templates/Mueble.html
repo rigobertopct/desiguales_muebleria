@@ -17,7 +17,7 @@
     <!-- Section-->
     <section class="py-5" style="font-size: 20px; font-family: 'Acumi',serif">
         <div class="container px-4 px-lg-5 mt-5">
-            <div class="row mb-3">
+            <div class="row mb-2">
                 <div class="col-lg-8 col-sm-12 col-md-8 border-degradado">
                     {% if mueble.id|comprobar_promo %}
                         {% for promo in promociones %}
@@ -45,6 +45,7 @@
                     </div>
             </div>
             <div class="row">
+                <p class="mb-3">{{ mueble.descripcion }}</p>
                 <p style="font-weight: bold;">OFERTA:</p>
                 <p style="font-size: 18px">
                     Si el acceso al domicilio es pequeño, podemos ensamblar el mueble dentro de su casa. Lo que supone
