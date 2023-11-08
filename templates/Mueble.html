@@ -40,7 +40,8 @@
                         <p>Precio: <span style="font-weight: bold;">$ {{ mueble.precio }} USD</span></p>
                     {% endif %}
                     <p style="font-weight: bold;">{{ mueble.nombre }}</p>
-                    <button id="gestionar" class="btn btn-dark" style="font-size: 20px;">GESTIONAR COMPRA</button>
+                    <button onclick="Abrir_Wasa()" class="btn btn-dark" style="font-size: 20px;">GESTIONAR COMPRA
+                    </button>
                     </div>
             </div>
             <div class="row">
@@ -75,63 +76,42 @@
             </div>
         </div>
     </section>
-    <div id="modal_gestionar" class="modal d-none">
-        <div class="modal-content p-5 w-25" style="background-color: rgba(221,221,221)">
-            <h3 class="text-center mb-3">Seleccione el metodo de gestión</h3>
-            <button id="wasa" class="btn btn-dark w-100 mb-3">
-                <img class="me-2" src="{% static 'assets/whatsapp.png' %}" style="height: 25px; width: 25px" alt="whatsapp">
-                WhatsApp
-            </button>
-            <button id="email" class="btn btn-dark w-100">
-                <img class="me-2" src="{% static 'assets/correo.png' %}" style="height: 25px; width: 25px" alt="whatsapp">
-                Correo
-            </button>
-
-        </div>
-        <div class="w-100 d-flex justify-content-center mt-3">
-            <span id="close_gestionar" class="btn btn-secondary">Cerrar</span>
-        </div>
-    </div>
-    <div id="modal_wasa" class="modal d-none">
-        <div class="modal-content p-5 w-25" style="background-color: rgba(221,221,221)">
+    <div id="modal_wasa" class="modal">
+        <div class="modal-content p-5 w-50" style="background-color: rgba(221,221,221)">
             <h3 class="text-center mb-3">Envíe un mensaje sobre el mueble y espere ser atendido</h3>
-            <label for="mensaje">Mensaje</label><textarea class="form-text mb-3" id="mensaje">
-
+            <label class="form-label mb-1">Mensaje</label
+            ><textarea class="form-control mb-3" id="mensaje_wasa">
             </textarea>
-            <button id="wasa" class="btn btn-dark w-100 mb-3">
-                <img class="me-2" src="{% static 'assets/whatsapp.png' %}" style="height: 25px; width: 25px" alt="whatsapp">
-                WhatsApp
+            <button onclick="Enviar_wasa()" class="btn btn-dark w-100 mb-3">
+                Enviar
             </button>
         </div>
         <div class="w-100 d-flex justify-content-center mt-3">
-            <span id="close_gestionar" class="btn btn-secondary">Cerrar</span>
+            <button onclick="Cerrar_Wasa()" class="btn btn-secondary">Cerrar</button>
         </div>
     </div>
 {% endblock %}
 {% block JavaScript %}
     <script>
-        window.onload = function () {
-            var modal = document.getElementById("modal_gestionar");
-            var modal_wasa = document.getElementById("modal_wasa");
-            var span = document.getElementById("close_gestionar");
-            var gestionar = document.getElementById('gestionar');
-            span.onclick = function () {
-                modal.classList.add('d-none');
-            }
-            gestionar.onclick = function () {
-                modal.classList.remove('d-none')
-            }
-            window.onclick = function (event) {
-                if (event.target === modal) {
-                    modal.style.display = "none";
-                }
-            }
-            const wasa=document.getElementById('wasa')
-            wasa.onclick=function (){
-                modal.classList.add('d-none');
-                modal_wasa.classList.remove('d-none');
-            }
+        function Abrir_Wasa() {
+            const modal_wasa = document.getElementById('modal_wasa')
+            modal_wasa.style.display = 'block'
         }
+
+        function Cerrar_Wasa() {
+            const modal = document.getElementById('modal_wasa')
+            modal.style.display = 'none'
+        }
+
+        function Enviar_wasa() {
+            var numero = '5356469263';
+            var link = 'https://losdesiguales.expresscuba.com/mueble/{{ mueble.id }}/';
+            var texto = document.getElementById('mensaje_wasa').value;
+            var mensaje = encodeURIComponent(`${texto} ${link}`);
+            var whatsappURL = `https://wa.me/${numero}?text=${mensaje}`;
+            window.open(whatsappURL, '_blank');
+        }
+
         var owl = $('.owl-carousel');
         owl.owlCarousel({
             margin: 24,
@@ -156,6 +136,5 @@
                 }
             }
         })
-    </script>
     </script>
 {% endblock %}
