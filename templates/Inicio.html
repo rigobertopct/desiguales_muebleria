@@ -29,17 +29,35 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder" style="font-family: 'Reem Kufi', sans-serif !important;">{{ item.nombre }}</h5>
+                                    <h5 class="fw-bolder"
+                                        style="font-family: 'Reem Kufi', sans-serif !important;">{{ item.nombre }}</h5>
                                     <!-- Product price-->
-                                    <p style="color: gray; font-family: 'Segoe UI',serif">$ {{ item.precio_minimo }} - $ {{ item.precio_maximo }}</p>
+                                    {% if item.precio_maximo == None %}
+                                        {% if item.precio_minimo == None %}
+                                        {% else %}
+                                            <p style="color: gray; font-family: 'Segoe UI',serif">
+                                                $ {{ item.precio_minimo }}</p>
+                                        {% endif %}
+                                    {% else %}
+                                        {% if item.precio_minimo == item.precio_maximo %}
+                                            <p style="color: gray; font-family: 'Segoe UI',serif">
+                                                $ {{ item.precio_minimo }}
+                                            </p>
+                                        {% else %}
+                                            <p style="color: gray; font-family: 'Segoe UI',serif">
+                                                $ {{ item.precio_minimo }}
+                                                - $ {{ item.precio_maximo }}</p>
+                                        {% endif %}
+                                    {% endif %}
+
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="d-flex justify-content-center">
                                     <a href="{% url 'Muebles:muebles' item.id %}">
-                                    <div class="boton-imagen">
-                                    </div>
+                                        <div class="boton-imagen">
+                                        </div>
                                     </a>
                                 </div>
                             </div>

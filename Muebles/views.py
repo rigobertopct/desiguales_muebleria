@@ -4,7 +4,6 @@ from django.shortcuts import render
 # Create your views here.
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from unicodedata import decimal
 
 from Muebles.models import *
 
@@ -23,6 +22,10 @@ def inicio(request):
             precio_maximo = muebles.order_by('-precio').first().precio
             categoria.precio_minimo = precio_minimo
             categoria.precio_maximo = precio_maximo
+            categoria.save()
+        else:
+            categoria.precio_maximo = None
+            categoria.precio_minimo = None
             categoria.save()
     data = {
         'title': 'Inicio',
