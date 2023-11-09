@@ -24,7 +24,9 @@
                     <div class="col mb-3">
                         <div class="card h-100 shadow-lg border-2" style="border-color: #202328">
                             <!-- Product image-->
-                            <img class="card-img-top" src="{{ item.imagen.url }}" alt="{{ item.nombre }}"/>
+                            <div class="contenedor">
+                                <img class="imagen" src="{{ item.imagen.url }}" alt="{{ item.nombre }}"/>
+                            </div>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -83,7 +85,7 @@
                 }
             }
         }
-        var owl = $('.owl-carousel');
+        var owl = $('.promos');
         owl.owlCarousel({
             margin: 24,
             loop: true,

@@ -9,7 +9,7 @@ from Muebles.models import *
 
 @admin.register(Mueble)
 class MuebleAdmin(admin.ModelAdmin):
-    list_display = ['nombre', 'precio', 'categoria', 'imagen']
+    list_display = ['nombre', 'precio', 'categoria']
 
 
 class CategoriaForm(forms.ModelForm):

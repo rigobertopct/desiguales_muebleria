@@ -20,7 +20,10 @@ class Mueble(models.Model):
     precio = models.DecimalField(decimal_places=2, max_digits=10)
     categoria = models.ForeignKey(Categoria, on_delete=CASCADE)
     descripcion = models.TextField(null=True, blank=True)
-    imagen = models.ImageField(upload_to='categorias', blank=True, null=True)
+    imagen_portada = models.ImageField(upload_to='categorias', blank=True, null=True)
+    imagen_extra = models.ImageField(upload_to='categorias', blank=True, null=True)
+    imagen_extra1 = models.ImageField(upload_to='categorias', blank=True, null=True)
+    imagen_extra2 = models.ImageField(upload_to='categorias', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Mueble'

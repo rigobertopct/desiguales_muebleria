@@ -22,19 +22,20 @@
                     {% if mueble.id|comprobar_promo %}
                         {% for promo in promociones %}
                             {% if mueble.id == promo.mueble.id %}
-                                <img class="img-fluid" style="height: 80%; width: 100%"
-                                     src="{{ mueble.imagen.url }}" alt="mueble">
+                                <img class="imagen" style="height: 80%; width: 100%"
+                                     src="{{ mueble.imagen_portada.url }}" onclick="Abrir_Vista_Previa()" alt="mueble">
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12">
                                 <p>Precio: <span
-                                        class="text-decoration-line-through text-danger" style="font-weight: bold;">$ {{ mueble.precio }} USD</span>
+                                        class="text-decoration-line-through text-danger"
+                                        style="font-weight: bold;">$ {{ mueble.precio }} USD</span>
                                     -
                                     <span style="font-weight: bold;">$ {{ promo.calcular_precio }} USD</span></p>
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                    <img class="img-fluid" style="height: 80%; width: 100%"
-                         src="{{ mueble.imagen.url }}" alt="mueble">
+                    <img class="imagen" style="height: 80%; width: 100%" onclick="Abrir_Vista_Previa()"
+                         src="{{ mueble.imagen_portada.url }}" alt="mueble">
                     </div>
                         <div class="col-lg-4 col-md-4 col-sm-12">
                         <p>Precio: <span style="font-weight: bold;">$ {{ mueble.precio }} USD</span></p>
@@ -78,7 +79,7 @@
         </div>
     </section>
     <div id="modal_wasa" class="modal">
-        <div class="modal-content p-5 w-50" style="background-color: rgba(221,221,221)">
+        <div class="modal-content p-2" style="background-color: rgba(221,221,221)">
             <h3 class="text-center mb-3">Envíe un mensaje sobre el mueble y espere ser atendido</h3>
             <label class="form-label mb-1">Mensaje</label
             ><textarea class="form-control mb-3" id="mensaje_wasa">
@@ -91,6 +92,50 @@
             <button onclick="Cerrar_Wasa()" class="btn btn-secondary">Cerrar</button>
         </div>
     </div>
+
+    <div id="modal_imagen" class="modal">
+        <div class="modal-content p-1" style="background-color: rgba(221,221,221)">
+            <div class="muebles_imagenes owl-carousel owl-theme mt-3 bg-dark">
+                <div class="item">
+                    <div class="slider">
+                        <div class="contenedor d-flex justify-content-center">
+                            <img src="{{ mueble.imagen_portada.url }}" class="imagen slider">
+                        </div>
+                    </div>
+                </div>
+                {% if mueble.imagen_extra != null %}
+                    <div class="item">
+                        <div class="slider">
+                            <div class="contenedor d-flex justify-content-center">
+                                <img src="{{ mueble.imagen_extra.url }}" class="imagen slider">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if mueble.imagen_extra1 != null %}
+                    <div class="item">
+                        <div class="slider">
+                            <div class="contenedor d-flex justify-content-center">
+                                <img src="{{ mueble.imagen_extra1.url }}" class="imagen slider">
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if mueble.imagen_extra2 != null %}
+                    <div class="item">
+                    <div class="slider">
+                        <div class="contenedor">
+                            <img src="{{ mueble.imagen_extra2.url }}" class="imagen slider">
+                        </div>
+                    </div>
+                    </div>
+                {% endif %}
+            </div>
+    </div>
+    <div class="w-100 d-flex justify-content-center mt-3">
+        <button onclick="Cerrar_Imagen()" class="btn btn-secondary">Cerrar</button>
+    </div>
+    </div>
 {% endblock %}
 {% block JavaScript %}
     <script>
@@ -99,9 +144,19 @@
             modal_wasa.style.display = 'block'
         }
 
+        function Abrir_Vista_Previa() {
+            const modal_previa = document.getElementById('modal_imagen')
+            modal_previa.style.display = 'block'
+        }
+
         function Cerrar_Wasa() {
             const modal = document.getElementById('modal_wasa')
             modal.style.display = 'none'
+        }
+
+        function Cerrar_Imagen() {
+            const modal_previa = document.getElementById('modal_imagen')
+            modal_previa.style.display = 'none'
         }
 
         function Enviar_wasa() {
@@ -113,7 +168,7 @@
             window.open(whatsappURL, '_blank');
         }
 
-        var owl = $('.owl-carousel');
+        var owl = $('.promos');
         owl.owlCarousel({
             margin: 24,
             loop: true,
@@ -134,6 +189,30 @@
                 },
                 1000: {
                     items: 6
+                }
+            }
+        })
+        var vista_previa = $('.muebles_imagenes');
+        vista_previa.owlCarousel({
+            margin: 24,
+            loop: false,
+            center: true,
+            autoplay: false,
+            smartSpeed: 300,
+            slideSpeed: 100,
+            responsive: {
+                0: {
+                    items: 1
+                },
+
+                550: {
+                    items: 1
+                },
+                700: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
                 }
             }
         })
