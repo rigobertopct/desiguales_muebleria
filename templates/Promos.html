@@ -9,7 +9,7 @@
         <a href="{% url 'Muebles:mueble' item.mueble.id %}" class="link_promo">
             <div class="item">
                 <div class="slider">
-                    <img src="{{ item.mueble.imagen_portada.url }}" class="slider" style="width: 215px; height: 130px">
+                    <img src="{{ item.mueble.imagen_portada.url }}" class="slider imagen-promo">
                     <div class="overlay text-white text-center">
                         <p class="discount-badge">-{{ item.descuento }}%</p>
                     </div>

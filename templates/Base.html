@@ -38,7 +38,7 @@
 
         .contenedor {
             width: 100%;
-            height: 50%;
+            height: 200px;
             overflow: hidden;
             border-radius: 5px;
             border-color: #202328;
@@ -54,15 +54,25 @@
             object-fit: cover;
         }
 
+        .imagen-promo {
+            width: 250px;
+            height: 130px;
+        }
+
         @media (max-width: 450px) {
             .boton-imagen {
                 width: 92px;
                 height: 30px;
             }
+
             .boton-imagen1 {
                 width: 92px;
                 height: 30px;
             }
+            .imagen-promo {
+            width: 180px;
+            height: 100px;
+        }
         }
     </style>
     {% block CSS %}
