@@ -93,7 +93,7 @@ def filtro(request):
             else:
                 consulta &= Q(categoria__nombre__icontains=categoria)
 
-            data = Mueble.objects.filter(consulta).values('nombre', 'categoria__nombre', 'precio', 'imagen', 'id')
+            data = Mueble.objects.filter(consulta).values('nombre', 'categoria__nombre', 'precio', 'imagen_portada', 'id')
 
         except Exception as e:
             data = {'error': str(e)}

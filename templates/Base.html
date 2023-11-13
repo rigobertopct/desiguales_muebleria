@@ -40,6 +40,9 @@
             width: 100%;
             height: 50%;
             overflow: hidden;
+            border-radius: 5px;
+            border-color: #202328;
+            border-width: 3px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -49,6 +52,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        @media (max-width: 450px) {
+            .boton-imagen {
+                width: 92px;
+                height: 30px;
+            }
+            .boton-imagen1 {
+                width: 92px;
+                height: 30px;
+            }
         }
     </style>
     {% block CSS %}

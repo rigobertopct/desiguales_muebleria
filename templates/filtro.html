@@ -50,12 +50,12 @@
                         </button>
                     </div>
                 </div>
-                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4" id="muebles">
+                <div class="row gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" id="muebles">
                     {% for item in muebles %}
-                            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
-                                <div class="card h-100 shadow-lg border-2">
+                            <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
+                                <div class="card h-100 shadow-lg border-3" style="border-color: #202328">
                                     <div class="contenedor">
-                                        <img class="imagen" src="{{ item.imagen.url }}" alt="{{ item.nombre }}"/>
+                                        <img class="imagen" src="{{ item.imagen_portada.url }}" alt="{{ item.nombre }}"/>
                                     </div>
                                     <div class="card-body p-4">
                                         <div class="text-center">
@@ -140,13 +140,13 @@
                     data.forEach(item => {
                         const divprop = document.createElement('div')
                         divprop.classList.add('col-lg-3')
-                        divprop.classList.add('col-md-6')
-                        divprop.classList.add('col-sm-12')
+                        divprop.classList.add('col-md-4')
+                        divprop.classList.add('col-sm-6')
                         divprop.classList.add('mb-3')
                         divprop.innerHTML = `
-                        <div class="card h-100 shadow-lg border-2">
+                        <div class="card h-100 shadow-lg border-3" style="border-color: #202328">
                             <div class="contenedor">
-                            <img class="imagen" src="/media/${item['imagen']}" alt="${item['nombre']}"/>
+                            <img class="imagen" src="/media/${item['imagen_portada']}" alt="${item['nombre']}"/>
                             </div>
 
                                     <div class="card-body p-4">
