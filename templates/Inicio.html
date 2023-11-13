@@ -17,8 +17,8 @@
     {% endif %}
     {% include 'Promos.html' %}
     <!-- Section-->
-    <section class="py-5">
-        <div class="container px-lg-5 mt-5">
+    <section>
+        <div class="container mt-5">
             <div class="row gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4">
                 {% for item in categorias %}
                     <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
@@ -31,22 +31,22 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder"
+                                    <h5 class="fw-bolder fuente-card"
                                         style="font-family: 'Reem Kufi', sans-serif !important;">{{ item.nombre }}</h5>
                                     <!-- Product price-->
                                     {% if item.precio_maximo == None %}
                                         {% if item.precio_minimo == None %}
                                         {% else %}
-                                            <p style="color: gray; font-family: 'Segoe UI',serif">
+                                            <p class="fuente-card" style="color: gray; font-family: 'Segoe UI',serif">
                                                 $ {{ item.precio_minimo }}</p>
                                         {% endif %}
                                     {% else %}
                                         {% if item.precio_minimo == item.precio_maximo %}
-                                            <p style="color: gray; font-family: 'Segoe UI',serif">
+                                            <p class="fuente-card" style="color: gray; font-family: 'Segoe UI',serif">
                                                 $ {{ item.precio_minimo }}
                                             </p>
                                         {% else %}
-                                            <p style="color: gray; font-family: 'Segoe UI',serif">
+                                            <p class="fuente-card" style="color: gray; font-family: 'Segoe UI',serif">
                                                 $ {{ item.precio_minimo }}
                                                 - $ {{ item.precio_maximo }}</p>
                                         {% endif %}

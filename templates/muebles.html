@@ -23,15 +23,15 @@
                                             <img class="imagen" src="{{ item.imagen_portada.url }}"
                                                  alt="{{ item.nombre }}"/>
                                             <div class="overlay text-white text-center">
-                                                <p class="discount-badge">-{{ promo.descuento }}%</p>
+                                                <p  class="discount-badge fuente-card">-{{ promo.descuento }}%</p>
                                             </div>
                                         </div>
                                         <div class="card-body p-4">
                                             <div class="text-center">
                                                 <!-- Product name-->
-                                                <h5 class="fw-bolder"
+                                                <h5 class="fw-bolder fuente-card"
                                                     style="font-family: 'Reem Kufi', sans-serif !important;">{{ item.nombre }}</h5>
-                                                <p style="color: gray; font-family: 'Segoe UI',serif"><span
+                                                <p class="fuente-card" style="color: gray; font-family: 'Segoe UI',serif"><span
                                                             class="text-decoration-line-through text-danger">$ {{ item.precio }}</span>
                                                         -
                                                         ${{ promo.calcular_precio }}</p>
@@ -59,9 +59,9 @@
                                 <div class="card-body p-4">
                                     <div class="text-center">
                                         <!-- Product name-->
-                                        <h5 class="fw-bolder"
+                                        <h5 class="fw-bolder fuente-card"
                                             style="font-family: 'Reem Kufi', sans-serif !important;">{{ item.nombre }}</h5>
-                                        <p style="color: gray; font-family: 'Segoe UI',serif">$ {{ item.precio }}</p>
+                                        <p class="fuente-card" style="color: gray; font-family: 'Segoe UI',serif">$ {{ item.precio }}</p>
                                     </div>
                                 </div>
                                 <!-- Product actions-->
