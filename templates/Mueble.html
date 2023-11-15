@@ -11,7 +11,43 @@
     <meta property="og:image" content="https://losdesiguales.expresscuba.com{{ mueble.imagen.url }}"/>
 {% endblock %}
 {% block CSS %}
+    <style>
+        .galeria {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
+        .visor-imagen {
+            margin-bottom: 20px;
+            width: 80%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .miniaturas {
+            display: flex;
+            overflow: hidden;
+        }
+
+        .miniaturas img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 10px;
+            cursor: pointer;
+            border-radius: 50px;
+        }
+
+        .imagen {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+    </style>
 {% endblock %}
 {% block contenido %}
     <!-- Section-->
@@ -22,8 +58,27 @@
                     {% if mueble.id|comprobar_promo %}
                         {% for promo in promociones %}
                             {% if mueble.id == promo.mueble.id %}
-                                <img class="imagen" style="height: 80%; width: 100%"
-                                     src="{{ mueble.imagen_portada.url }}" onclick="Abrir_Vista_Previa()" alt="mueble">
+                                <div class="galeria">
+                                    <div class="visor-imagen">
+                                        <img class="imagen" src="{{ mueble.imagen_portada.url }}"
+                                             id="imagenSeleccionada">
+                                    </div>
+                                    <div class="miniaturas">
+                                        {% if mueble.imagen_extra %}
+                                            <img src="{{ mueble.imagen_extra.url }}"
+                                                 onclick="mostrarImagen('{{ mueble.imagen_extra.url }}')">
+                                        {% endif %}
+                                        {% if mueble.imagen_extra1 %}
+                                            <img src="{{ mueble.imagen_extra1.url }}"
+                                                 onclick="mostrarImagen('{{ mueble.imagen_extra1.url }}')">
+                                        {% endif %}
+                                        {% if mueble.imagen_extra2 %}
+                                            <img src="{{ mueble.imagen_extra2.url }}"
+                                                 onclick="mostrarImagen('{{ mueble.imagen_extra2.url }}')">
+                                        {% endif %}
+                                        <!-- Agrega más miniaturas según sea necesario -->
+                                    </div>
+                                </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12">
                                 <p>Precio: <span
@@ -34,8 +89,27 @@
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                    <img class="imagen" style="height: 80%; width: 100%" onclick="Abrir_Vista_Previa()"
-                         src="{{ mueble.imagen_portada.url }}" alt="mueble">
+                    <div class="galeria">
+                                    <div class="visor-imagen">
+                                        <img class="imagen" src="{{ mueble.imagen_portada.url }}"
+                                             id="imagenSeleccionada">
+                                    </div>
+                                    <div class="miniaturas">
+                                        {% if mueble.imagen_extra %}
+                                            <img src="{{ mueble.imagen_extra.url }}"
+                                                 onclick="mostrarImagen('{{ mueble.imagen_extra.url }}')">
+                                        {% endif %}
+                                        {% if mueble.imagen_extra1 %}
+                                            <img src="{{ mueble.imagen_extra1.url }}"
+                                                 onclick="mostrarImagen('{{ mueble.imagen_extra1.url }}')">
+                                        {% endif %}
+                                        {% if mueble.imagen_extra2 %}
+                                            <img src="{{ mueble.imagen_extra2.url }}"
+                                                 onclick="mostrarImagen('{{ mueble.imagen_extra2.url }}')">
+                                        {% endif %}
+                                        <!-- Agrega más miniaturas según sea necesario -->
+                                    </div>
+                                </div>
                     </div>
                         <div class="col-lg-4 col-md-4 col-sm-12">
                         <p>Precio: <span style="font-weight: bold;">$ {{ mueble.precio }} USD</span></p>
@@ -92,50 +166,6 @@
             <button onclick="Cerrar_Wasa()" class="btn btn-secondary">Cerrar</button>
         </div>
     </div>
-
-    <div id="modal_imagen" class="modal">
-        <div class="modal-content p-1" style="background-color: rgba(221,221,221)">
-            <div class="muebles_imagenes owl-carousel owl-theme mt-3 bg-dark">
-                <div class="item">
-                    <div class="slider">
-                        <div class="contenedor d-flex justify-content-center">
-                            <img src="{{ mueble.imagen_portada.url }}" class="imagen slider">
-                        </div>
-                    </div>
-                </div>
-                {% if mueble.imagen_extra %}
-                    <div class="item">
-                        <div class="slider">
-                            <div class="contenedor d-flex justify-content-center">
-                                <img src="{{ mueble.imagen_extra.url }}" class="imagen slider">
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-                {% if mueble.imagen_extra1 %}
-                    <div class="item">
-                        <div class="slider">
-                            <div class="contenedor d-flex justify-content-center">
-                                <img src="{{ mueble.imagen_extra1.url }}" class="imagen slider">
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-                {% if mueble.imagen_extra2 %}
-                    <div class="item">
-                    <div class="slider">
-                        <div class="contenedor">
-                            <img src="{{ mueble.imagen_extra2.url }}" class="imagen slider">
-                        </div>
-                    </div>
-                    </div>
-                {% endif %}
-            </div>
-    </div>
-    <div class="w-100 d-flex justify-content-center mt-3">
-        <button onclick="Cerrar_Imagen()" class="btn btn-secondary">Cerrar</button>
-    </div>
-    </div>
 {% endblock %}
 {% block JavaScript %}
     <script>
@@ -144,19 +174,9 @@
             modal_wasa.style.display = 'block'
         }
 
-        function Abrir_Vista_Previa() {
-            const modal_previa = document.getElementById('modal_imagen')
-            modal_previa.style.display = 'block'
-        }
-
         function Cerrar_Wasa() {
             const modal = document.getElementById('modal_wasa')
             modal.style.display = 'none'
-        }
-
-        function Cerrar_Imagen() {
-            const modal_previa = document.getElementById('modal_imagen')
-            modal_previa.style.display = 'none'
         }
 
         function Enviar_wasa() {
@@ -168,9 +188,15 @@
             window.open(whatsappURL, '_blank');
         }
 
+        function mostrarImagen(src) {
+            document.getElementById('imagenSeleccionada').src = src;
+
+        }
+
+
         var owl = $('.promos');
         owl.owlCarousel({
-            margin:5,
+            margin: 5,
             loop: true,
             center: false,
             autoplay: true,
@@ -189,30 +215,6 @@
                 },
                 1000: {
                     items: 6
-                }
-            }
-        })
-        var vista_previa = $('.muebles_imagenes');
-        vista_previa.owlCarousel({
-            margin: 24,
-            loop: false,
-            center: true,
-            autoplay: false,
-            smartSpeed: 300,
-            slideSpeed: 100,
-            responsive: {
-                0: {
-                    items: 1
-                },
-
-                550: {
-                    items: 1
-                },
-                700: {
-                    items: 1
-                },
-                1000: {
-                    items: 1
                 }
             }
         })
