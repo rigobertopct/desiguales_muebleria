@@ -53,7 +53,8 @@
                 <div class="row gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4" id="muebles">
                     {% for item in muebles %}
                             <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
-                                <div class="card h-100 shadow-lg border-3" style="border-color: #202328">
+                                <div class="card h-100 shadow-lg border-3"
+                                style="border-color: #202328; border-width: 2px; overflow: hidden;">
                                     <div class="contenedor">
                                         <img class="imagen" src="{{ item.imagen_portada.url }}" alt="{{ item.nombre }}"/>
                                     </div>
@@ -144,7 +145,8 @@
                         divprop.classList.add('col-sm-6')
                         divprop.classList.add('mb-3')
                         divprop.innerHTML = `
-                        <div class="card h-100 shadow-lg border-3" style="border-color: #202328">
+                        <div class="card h-100 shadow-lg border-3"
+                            style="border-color: #202328; border-width: 2px; overflow: hidden;">
                             <div class="contenedor">
                             <img class="imagen" src="/media/${item['imagen_portada']}" alt="${item['nombre']}"/>
                             </div>

@@ -18,7 +18,8 @@
                         {% for promo in promociones %}
                             {% if item.id == promo.mueble.id %}
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
-                                    <div class="card h-100 shadow-lg border-3" style="border-color: #202328">
+                                    <div class="card h-100 shadow-lg border-3"
+                                    style="border-color: #202328; border-width: 2px; overflow: hidden;">
                                         <div class="contenedor">
                                             <img class="imagen" src="{{ item.imagen_portada.url }}"
                                                  alt="{{ item.nombre }}"/>
@@ -52,7 +53,8 @@
                         {% endfor %}
                     {% else %}
                         <div class="col-lg-3 col-md-2 col-sm-12 mb-3">
-                            <div class="card h-100 shadow-lg border-2">
+                            <div class="card h-100 shadow-lg border-2"
+                            style="border-color: #202328; border-width: 2px; overflow: hidden;">
                                 <div class="contenedor">
                                     <img class="imagen" src="{{ item.imagen_portada.url }}" alt="{{ item.nombre }}"/>
                                 </div>
