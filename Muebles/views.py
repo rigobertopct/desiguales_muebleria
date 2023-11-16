@@ -29,7 +29,7 @@ def inicio(request):
             categoria.save()
     data = {
         'title': 'Inicio',
-        'categorias': Categoria.objects.all().order_by('-id'),
+        'categorias': Categoria.objects.all().order_by('id'),
         'promociones': Muebles_Oferta.objects.all(),
         'show_modal': visited
     }
@@ -64,7 +64,7 @@ def filtro_view(request):
         'muebles': Mueble.objects.all(),
         'promociones': Muebles_Oferta.objects.all(),
         'title': 'Filtro de muebles',
-        'categorias': Categoria.objects.all().order_by('-id')
+        'categorias': Categoria.objects.all().order_by('id')
     }
     return render(request, 'filtro.html', data)
 
