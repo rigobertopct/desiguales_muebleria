@@ -46,7 +46,12 @@
             object-fit: cover;
             object-position: center;
         }
-
+ @media (max-width: 450px) {
+     .miniaturas img {
+            width: 60px;
+            height: 60px;
+        }
+ }
     </style>
 {% endblock %}
 {% block contenido %}
