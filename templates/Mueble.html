@@ -113,6 +113,10 @@
                                              id="imagenSeleccionada">
                                     </div>
                                     <div class="miniaturas">
+                                    {% if mueble.imagen_portada %}
+                                            <img src="{{ mueble.imagen_portada.url }}"
+                                                 onclick="mostrarImagen('{{ mueble.imagen_portada.url }}')">
+                                        {% endif %}
                                         {% if mueble.imagen_extra %}
                                             <img src="{{ mueble.imagen_extra.url }}"
                                                  onclick="mostrarImagen('{{ mueble.imagen_extra.url }}')">
