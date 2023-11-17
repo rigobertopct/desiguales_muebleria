@@ -114,8 +114,13 @@
                     {% else %}
                     <div class="galeria mb-3">
                         <div class="visor-imagen">
-                            <img class="imagen" src="{{ mueble.imagen_extra.url }}"
-                                 id="imagenSeleccionada">
+                            {% if mueble.imagen_extra %}
+                                <img class="imagen" src="{{ mueble.imagen_extra.url }}"
+                                     id="imagenSeleccionada">
+                            {% else %}
+                                <img class="imagen" src="{% static 'noImagen.PNG' %}"
+                                     id="imagenSeleccionada">
+                            {% endif %}
                         </div>
                         <div class="miniaturas">
                             {% if mueble.imagen_extra %}
