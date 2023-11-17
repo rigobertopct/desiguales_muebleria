@@ -74,14 +74,15 @@
                             {% if mueble.id == promo.mueble.id %}
                                 <div class="galeria mb-3">
                                     <div class="visor-imagen">
-                                        <img class="imagen" src="{{ mueble.imagen_portada.url }}"
-                                             id="imagenSeleccionada">
+                                        {% if mueble.imagen_extra %}
+                                            <img class="imagen" src="{{ mueble.imagen_extra.url }}"
+                                                 id="imagenSeleccionada">
+                                        {% else %}
+                                            <img class="imagen" src="{% static 'noImagen.PNG' %}"
+                                                 id="imagenSeleccionada">
+                                        {% endif %}
                                     </div>
                                     <div class="miniaturas">
-                                    {% if mueble.imagen_portada %}
-                                            <img src="{{ mueble.imagen_portada.url }}"
-                                                 onclick="mostrarImagen('{{ mueble.imagen_portada.url }}')">
-                                        {% endif %}
                                         {% if mueble.imagen_extra %}
                                             <img src="{{ mueble.imagen_extra.url }}"
                                                  onclick="mostrarImagen('{{ mueble.imagen_extra.url }}')">
@@ -93,6 +94,10 @@
                                         {% if mueble.imagen_extra2 %}
                                             <img src="{{ mueble.imagen_extra2.url }}"
                                                  onclick="mostrarImagen('{{ mueble.imagen_extra2.url }}')">
+                                        {% endif %}
+                                        {% if mueble.imagen_extra3 %}
+                                            <img src="{{ mueble.imagen_extra3.url }}"
+                                                 onclick="mostrarImagen('{{ mueble.imagen_extra3.url }}')">
                                         {% endif %}
                                         <!-- Agrega más miniaturas según sea necesario -->
                                     </div>
@@ -108,30 +113,30 @@
                         {% endfor %}
                     {% else %}
                     <div class="galeria mb-3">
-                                    <div class="visor-imagen">
-                                        <img class="imagen" src="{{ mueble.imagen_portada.url }}"
-                                             id="imagenSeleccionada">
-                                    </div>
-                                    <div class="miniaturas">
-                                    {% if mueble.imagen_portada %}
-                                            <img src="{{ mueble.imagen_portada.url }}"
-                                                 onclick="mostrarImagen('{{ mueble.imagen_portada.url }}')">
-                                        {% endif %}
-                                        {% if mueble.imagen_extra %}
-                                            <img src="{{ mueble.imagen_extra.url }}"
-                                                 onclick="mostrarImagen('{{ mueble.imagen_extra.url }}')">
-                                        {% endif %}
-                                        {% if mueble.imagen_extra1 %}
-                                            <img src="{{ mueble.imagen_extra1.url }}"
-                                                 onclick="mostrarImagen('{{ mueble.imagen_extra1.url }}')">
-                                        {% endif %}
-                                        {% if mueble.imagen_extra2 %}
-                                            <img src="{{ mueble.imagen_extra2.url }}"
-                                                 onclick="mostrarImagen('{{ mueble.imagen_extra2.url }}')">
-                                        {% endif %}
-                                        <!-- Agrega más miniaturas según sea necesario -->
-                                    </div>
-                                </div>
+                        <div class="visor-imagen">
+                            <img class="imagen" src="{{ mueble.imagen_extra.url }}"
+                                 id="imagenSeleccionada">
+                        </div>
+                        <div class="miniaturas">
+                            {% if mueble.imagen_extra %}
+                                <img src="{{ mueble.imagen_extra.url }}"
+                                     onclick="mostrarImagen('{{ mueble.imagen_extra.url }}')">
+                            {% endif %}
+                            {% if mueble.imagen_extra1 %}
+                                <img src="{{ mueble.imagen_extra1.url }}"
+                                     onclick="mostrarImagen('{{ mueble.imagen_extra1.url }}')">
+                            {% endif %}
+                            {% if mueble.imagen_extra2 %}
+                                <img src="{{ mueble.imagen_extra2.url }}"
+                                     onclick="mostrarImagen('{{ mueble.imagen_extra2.url }}')">
+                            {% endif %}
+                            {% if mueble.imagen_extra3 %}
+                                <img src="{{ mueble.imagen_extra3.url }}"
+                                     onclick="mostrarImagen('{{ mueble.imagen_extra3.url }}')">
+                            {% endif %}
+                            <!-- Agrega más miniaturas según sea necesario -->
+                        </div>
+                    </div>
                     </div>
                         <div class="col-lg-4 col-md-4 col-sm-12">
                         <p>Precio: <span style="font-weight: bold;">$ {{ mueble.precio }} USD</span></p>

@@ -24,6 +24,7 @@ class Mueble(models.Model):
     imagen_extra = models.ImageField(upload_to='categorias', blank=True, null=True)
     imagen_extra1 = models.ImageField(upload_to='categorias', blank=True, null=True)
     imagen_extra2 = models.ImageField(upload_to='categorias', blank=True, null=True)
+    imagen_extra3 = models.ImageField(upload_to='categorias', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Mueble'
