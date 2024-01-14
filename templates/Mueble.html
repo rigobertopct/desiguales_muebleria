@@ -64,6 +64,11 @@
     </style>
 {% endblock %}
 {% block contenido %}
+    <div class="d-flex justify-content-center align-items-center mt-3">
+        <form action="{{ request.META.HTTP_REFERER }}" method="get">
+            <button class="btn btn-dark" type="submit">Atrás</button>
+        </form>
+    </div>
     <!-- Section-->
     <section style="font-size: 20px; font-family: 'Acumi',serif">
         <div class="container px-4 px-lg-5 mt-5">

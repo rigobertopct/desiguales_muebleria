@@ -4,16 +4,23 @@
     {{ title }}
 {% endblock %}
 {% block CSS %}
+    <style>
+        .btn-regresar {
+            cursor: pointer;
+            text-decoration: none;
+            color: #202328;
+        }
+    </style>
 {% endblock %}
 {% block contenido %}
     {% if show_modal %}
-    <div id="myModal" class="modal">
-        <img class="modal-content" src="{% static 'assets/promos/navidad.jpg' %}" alt="Imagen">
-        <span class="d-flex justify-content-center text-white mt-3">Feliz Navidad</span>
-        <div class="w-100 d-flex justify-content-center mt-3">
-            <span class="close btn btn-secondary">Cerrar</span>
+        <div id="myModal" class="modal">
+            <img class="modal-content" src="{% static 'assets/promos/navidad.jpg' %}" alt="Imagen">
+            <span class="d-flex justify-content-center text-white mt-3">Feliz Navidad</span>
+            <div class="w-100 d-flex justify-content-center mt-3">
+                <span class="close btn btn-secondary">Cerrar</span>
+            </div>
         </div>
-    </div>
     {% endif %}
     {% include 'Promos.html' %}
     <!-- Section-->
